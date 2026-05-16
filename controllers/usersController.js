@@ -17,6 +17,17 @@ const validateUser = [
     .withMessage(`Last Name ${alphaErr}`)
     .isLength({ min: 1, max: 10 })
     .withMessage(`Last Name ${lengthErr}`),
+  body("email").trim().isEmail().withMessage("Enter valid email"),
+  body("age")
+    .optional({ values: "falsy" })
+    .trim()
+    .isNumeric()
+    .withMessage("Invalid age"),
+  body("bio")
+    .optional({ values: "falsy" })
+    .trim()
+    .isString()
+    .withMessage("Invalid bio. 200 char max"),
 ];
 
 exports.usersListGet = (req, res) => {
@@ -40,8 +51,10 @@ exports.usersCreatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName } = matchedData(req);
-    usersStorage.addUser({ firstName, lastName });
+    const { firstName, lastName, email, age, bio } = matchedData(req, {
+      includeOptionals: true,
+    });
+    usersStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect("/");
   },
 ];
