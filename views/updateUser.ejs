@@ -5,7 +5,12 @@
   <body>
     <h1><%= title %></h1>
     <%- include("partials/errors.ejs") %>
-    <form action="/<%= user.id %>/update" method="POST">
+    <form
+      action="/<%= user.id %>/update"
+      method="POST"
+      style="display: flex; flex-direction: column; gap: 10px"
+    >
+      <label for="firstName">First Name: </label>
       <input
         name="firstName"
         type="text"
@@ -13,6 +18,7 @@
         value="<%= user.firstName %>"
         required
       />
+      <label for="lastName">Last Name: </label>
       <input
         name="lastName"
         type="text"
@@ -20,6 +26,25 @@
         value="<%= user.lastName %>"
         required
       />
+      <label for="email">Email: </label>
+      <input
+        name="email"
+        type="email"
+        id="email"
+        value="<%= user.email %>"
+        required
+      />
+      <label for="age">Age: </label>
+      <input
+        name="age"
+        type="number"
+        id="age"
+        min="18"
+        max="120"
+        value="<%= user.age %>"
+      />
+      <label for="bio">Bio: </label>
+      <textarea name="bio" maxlength="200"><%= user.bio %></textarea>
       <button type="submit">Submit</button>
     </form>
   </body>

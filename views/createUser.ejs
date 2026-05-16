@@ -5,7 +5,11 @@
   <body>
     <h1><%= title %></h1>
     <%- include("partials/errors.ejs")%>
-    <form action="/create" method="POST">
+    <form
+      action="/create"
+      method="POST"
+      style="display: flex; flex-direction: column; gap: 10px"
+    >
       <label for="firstName">First Name: </label>
       <input type="text" name="firstName" id="firstName" required />
       <label for="lastName">Last Name: </label>
