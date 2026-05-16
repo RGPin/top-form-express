@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <%- include("partials/errors.ejs") %>
+    <form action="/<%= user.id %>/update" method="POST">
+      <input
+        name="firstName"
+        type="text"
+        id="firstName"
+        value="<%= user.firstName %>"
+        required
+      />
+      <input
+        name="lastName"
+        type="text"
+        id="lastName"
+        value="<%= user.lastName %>"
+        required
+      />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

@@ -45,3 +45,29 @@ exports.usersCreatePost = [
     res.redirect("/");
   },
 ];
+
+exports.usersUpdateGet = (req, res) => {
+  const user = usersStorage.getUser(req.params.id);
+  res.render("updateUser", {
+    title: "Update user",
+    user,
+  });
+};
+
+exports.usersUpdatePost = [
+  validateUser,
+  (req, res) => {
+    const errors = validationResult(req);
+    const user = usersStorage.getUser(req.params.id);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("updateUser", {
+        title: "Update user",
+        errors: errors.array(),
+        user,
+      });
+    }
+    const { firstName, lastName } = matchedData(req);
+    usersStorage.updateUser(req.params.id, { firstName, lastName });
+    res.redirect("/");
+  },
+];
