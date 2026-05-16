@@ -4,6 +4,12 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <form action="/search" method="GET">
+      <label for="search">Search: 
+        <input type="text" name="search" id="search"/>
+      </label>
+    </form>
+    <%- include("searchResult.ejs") %>
     <ul>
       <% if(locals.users) { %>
         <% users.forEach(user => { %>

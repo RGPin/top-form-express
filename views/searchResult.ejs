@@ -1,0 +1,12 @@
+<% if (locals.user) { %>
+  <div>
+    ID: <%= user.id %>, 
+    Name: <%= user.firstName %> <%= user.lastName %>,
+    Email: <%= user.email %>,
+    <%= user.age ? `Age: ${user.age},` : "" %>
+    <%= user.bio ? `Bio: ${user.bio}` : "" %>
+  </div>
+<%  } %>
+<% if (!locals.users) { %>
+  <a href="/">Home</a>
+<%  } %>

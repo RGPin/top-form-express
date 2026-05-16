@@ -18,6 +18,16 @@ class UsersStorage {
     return this.storage[id];
   }
 
+  searchUser(searchParam) {
+    const param = searchParam.toLowerCase();
+    return Object.values(this.storage).find(
+      (user) =>
+        user.firstName.toLowerCase().includes(param) ||
+        user.lastName.toLowerCase().includes(param) ||
+        user.email.toLowerCase().includes(param),
+    );
+  }
+
   updateUser(id, { firstName, lastName, email, age, bio }) {
     this.storage[id] = { id, firstName, lastName, email, age, bio };
   }
